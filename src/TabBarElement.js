@@ -18,6 +18,7 @@ import {
 } from "./UIComponents";
 import ResourceSavingScene from "./ResourceSavingScene";
 import { CommonActions } from "@react-navigation/native";
+import I18n from 'i18n-js';
 
 /**
  * @name TabBarElement
@@ -427,12 +428,22 @@ export default function TabBarElement({
               dotCornerRadius={dotCornerRadius}
               topPadding={topPadding}
               activeTabBackground={activeTabBackground}
-              style={{
-                left: animatedPos.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [prevPos, pos],
-                }),
-              }}
+                style={
+                I18n.currentLocale() == 'ar' ?
+                  {
+                    right: animatedPos.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [prevPos, pos],
+                    })
+                  }
+                  :
+                  {
+                    left: animatedPos.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [prevPos, pos],
+                    })
+                  }
+              }
               width={width}
               height={height}
             />
